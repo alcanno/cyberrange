@@ -169,7 +169,7 @@
   - name: Add VM to inventory
     add_host:
       name: "{{ vm_lnx_created.server.id }}"
-      ansible_host: "{{ vm_lnx_created.server.addresses.public[1].addr }}"
+      ansible_host: "{{ vm_lnx_created.server.addresses.public[0].addr }}"
       groups: cr_server_lnx_grp
     when: vm_lnx_created is defined and vm_lnx_created.changed
 
@@ -250,7 +250,7 @@
     win_reboot:
     when: server_rename.reboot_required
 
-  - name: Join DB01 to the domain
+  - name: Join AP01 to the domain
     win_domain_membership:
       dns_domain_name: "{{ lookup('env', 'VM_NODE_DOMAIN') }}"
       domain_admin_user: "{{ lookup('env', 'VM_NODE_USER_01') }}"
@@ -267,7 +267,8 @@
 - name: CyberRange - Linux - Play 4
   hosts: cr_server_lnx_grp
   vars:
-    ansible_user: root  # Specify the username you want to use
+    ansible_user: root
+
   tasks:
   - name: Run command on OpenStack VM
     shell: "echo '$(date)' | md5sum > /home/ubuntu/flag.txt"
