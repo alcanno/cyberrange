@@ -156,6 +156,7 @@
        auto_ip: no
        network: 59a335ad-3f93-46bb-8a50-acca5e392511
        security_groups: default
+       project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
        meta:
          os: linux        
     async: 600
