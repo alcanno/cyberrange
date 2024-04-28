@@ -72,9 +72,9 @@
          domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"                 
     register: floating_ip_info
 
-  - name: Set fact for floating IPs
-    set_fact:
-       floating_ips: "{{ floating_ip_info.floating_ip.floating_ip_address }}"
+#  - name: Set fact for floating IPs
+#    set_fact:
+#       floating_ips: "{{ floating_ip_info.floating_ip.floating_ip_address }}"
 
   - name: Output floating ip
     debug:
@@ -126,9 +126,9 @@
          domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"                 
     register: floating_ip_info
 
-  - name: Set fact for floating IPs
-    set_fact:
-       floating_ips: "{{ floating_ip_info.floating_ip.floating_ip_address }}"
+#  - name: Set fact for floating IPs
+#    set_fact:
+#       floating_ips: "{{ floating_ip_info.floating_ip.floating_ip_address }}"
 
   - name: Output floating ip
     debug:
