@@ -154,7 +154,7 @@
        timeout: 200
        flavor: 3
        auto_ip: no
-       network: 59a335ad-3f93-46bb-8a50-acca5e392511
+       network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
        auth:
          auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
