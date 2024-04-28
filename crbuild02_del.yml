@@ -1,0 +1,10 @@
+---
+- name: CyberRange
+  hosts: localhost
+  
+  tasks:
+  - name: Delete instance
+    os_server:
+       state: absent
+       name: crvmwinAD
+     
