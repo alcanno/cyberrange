@@ -76,9 +76,9 @@
 #    set_fact:
 #       floating_ips: "{{ floating_ip_info.floating_ip.floating_ip_address }}"
 
-  - name: Output floating ip
-    debug:
-       var: floating_ips
+#  - name: Output floating ip
+#    debug:
+#       var: floating_ips
              
   - name: Add VM to inventory
     add_host:
@@ -130,9 +130,9 @@
 #    set_fact:
 #       floating_ips: "{{ floating_ip_info.floating_ip.floating_ip_address }}"
 
-  - name: Output floating ip
-    debug:
-       var: floating_ips
+#  - name: Output floating ip
+#    debug:
+#       var: floating_ips
              
   - name: Add VM to inventory
     add_host:
