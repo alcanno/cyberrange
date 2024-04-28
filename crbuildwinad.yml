@@ -156,7 +156,12 @@
        auto_ip: no
        network: 59a335ad-3f93-46bb-8a50-acca5e392511
        security_groups: default
-       project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"    
        meta:
          os: linux        
     async: 600
