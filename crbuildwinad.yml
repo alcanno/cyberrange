@@ -194,7 +194,6 @@
       groups: cr_server_lnx_grp
     when: vm_lnx_created is defined and vm_lnx_created.changed
 
-
 - name: CyberRange - DB01 - Play 2
   hosts: cr_server_db_grp
   gather_facts: no
