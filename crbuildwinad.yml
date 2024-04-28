@@ -171,11 +171,33 @@
   - name: Debug vm_lnx_created variable
     debug:
        var: vm_lnx_created
+
+  - name: Create floating ip - Linx
+    os_floating_ip:
+       state: present
+       network: public
+       server: crvmlin02 
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"                 
+    register: floating_ip_info
+
+  - name: Set fact for floating IPs
+    set_fact:
+       floating_ips: "{{ floating_ip_info.floating_ip.floating_ip_address }}"
+
+  - name: Output floating ip
+    debug:
+       var: floating_ips
+
        
   - name: Add VM to inventory
     add_host:
       name: "{{ vm_lnx_created.server.id }}"
-      ansible_host: "{{ vm_lnx_created.server.addresses.public[1].addr }}"
+      ansible_host: "{{ floating_ip_info.floating_ip.floating_ip_address }}"
       groups: cr_server_lnx_grp
     when: vm_lnx_created is defined and vm_lnx_created.changed
 
