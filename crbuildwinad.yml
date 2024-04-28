@@ -148,7 +148,7 @@
   - name: Create VM Linux App 
     os_server:
        state: present
-       name: crvmlin01
+       name: crvmlin02
        image: "ubuntu2204img"
        key_name: os_key
        timeout: 200
