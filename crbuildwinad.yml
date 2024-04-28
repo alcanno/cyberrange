@@ -190,7 +190,7 @@
   - name: Add VM to inventory
     add_host:
       name: "{{ vm_lnx_created.server.id }}"
-      ansible_host: "{{ vm_lnx_created.server.addresses.public[0].addr }}"
+      ansible_host: "{{ floating_ip_info.floating_ip.floating_ip_address }}"
       groups: cr_server_lnx_grp
     when: vm_lnx_created is defined and vm_lnx_created.changed
 
