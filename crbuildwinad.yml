@@ -145,6 +145,57 @@
     debug:
       var: hostvars
 
+  - name: Create VM Linux App 
+    os_server:
+       state: present
+       name: crvmlin01
+       image: "ubuntu2204img"
+       key_name: os_key
+       timeout: 200
+       flavor: 3
+       auto_ip: no
+       network: 59a335ad-3f93-46bb-8a50-acca5e392511
+       security_groups: default
+       meta:
+         os: linux        
+    async: 600
+    poll: 5
+    register: vm_lnx_created
+           
+  - name: Create floating ip
+    os_floating_ip:
+       state: present
+       network: public
+       server: crvmlin01 
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"
+                  
+    register: floating_ip_info
+
+  - name: Set fact for floating IPs
+    set_fact:
+       floating_ips: "{{ floating_ip_info.floating_ip.floating_ip_address }}"
+
+  - name: Output floating ip
+    debug:
+       var: floating_ips
+
+  - name: Debug vm_lnx_created variable
+    debug:
+       var: vm_lnx_created
+
+  - name: Add VM to inventory
+    add_host:
+      name: "{{ vm_lnx_created.server.id }}"
+      ansible_host: "{{ floating_ip_info.floating_ip.floating_ip_address }}"
+      groups: cr_server_lnx_grp
+    when: vm_lnx_created is defined and vm_lnx_created.changed
+
+
 - name: CyberRange - DB01 - Play 2
   hosts: cr_server_db_grp
   gather_facts: no
@@ -235,7 +286,16 @@
     win_reboot:
     when: domain_join_ap01.reboot_required    
          
-
+- name: CyberRange - Linux - Play 4
+  hosts: cr_server_lnx_grp
+  vars:
+    ansible_user: root  # Specify the username you want to use
+  tasks:
+  - name: Run command on OpenStack VM
+    shell: "echo '$(date)' | md5sum > /home/ubuntu/flag.txt"
+ 
+  - name: Run command on OpenStack VM
+    shell: "echo root '$(date)' | md5sum > /root/root.txt"
      
   
          
