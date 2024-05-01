@@ -302,10 +302,10 @@
 
   tasks:
   - name: Run command on OpenStack VM
-    shell: "echo '$(date)' | md5sum > /home/ubuntu/flag.txt"
+    shell: "echo $(date) | md5sum | awk '{print substr($1,length($1)-31)}' > /home/ubuntu/flag.txt"
  
   - name: Run command on OpenStack VM
-    shell: "echo root '$(date)' | md5sum > /root/root.txt"
+    shell: "echo $(date) | md5sum | awk '{print substr($1,length($1)-31)}' > /root/root.txt"
      
   
          
