@@ -14,6 +14,12 @@
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"           
        meta:
          os: linux
     async: 600
@@ -63,6 +69,12 @@
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"        
        meta:
          os: linux
     async: 600
@@ -112,6 +124,12 @@
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"        
        meta:
          os: linux
     async: 600
@@ -161,6 +179,12 @@
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"        
        meta:
          os: linux
     async: 600
@@ -210,6 +234,12 @@
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"        
        meta:
          os: linux
     async: 600
@@ -259,6 +289,12 @@
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"        
        meta:
          os: linux
     async: 600
@@ -308,6 +344,12 @@
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"        
        meta:
          os: linux
 
@@ -354,6 +396,12 @@
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"        
        meta:
          os: linux
     async: 600
@@ -403,6 +451,12 @@
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"        
        meta:
          os: linux
     async: 600
@@ -452,6 +506,12 @@
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"        
        meta:
          os: linux
     async: 600
@@ -501,6 +561,12 @@
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"        
        meta:
          os: linux   
     async: 600
