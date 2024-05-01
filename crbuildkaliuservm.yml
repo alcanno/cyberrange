@@ -611,6 +611,10 @@
     ansible_user: kali
 
   tasks:
+  - name: Debug inventory - server 
+    debug:
+      var: cr_server_lnx_grp
+        
   - name: Run command to change passwd
     shell: "echo $(date) | md5sum | awk '{print substr($1,length($1)-12)}' > /home/kali/pass.txt && cat /home/kali/pass.txt | vncpasswd -f > /home/kali/.vnc/passwd && cat /home/kali/pass.txt"
     register: shellout

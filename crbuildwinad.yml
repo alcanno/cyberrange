@@ -301,6 +301,10 @@
     ansible_user: root
 
   tasks:
+  - name: Debug inventory - server 
+    debug:
+      var: cr_server_lnx_grp
+      
   - name: Run command on OpenStack VM
     shell: "echo $(date) | md5sum | awk '{print substr($1,length($1)-31)}' > /home/ubuntu/flag.txt"
  
