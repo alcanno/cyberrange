@@ -10,7 +10,7 @@
        image: "kali2024img"
        key_name: os_key
        timeout: 200
-       flavor: 3
+       flavor: 100
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
@@ -65,7 +65,7 @@
        image: "kali2024img"
        key_name: os_key
        timeout: 200
-       flavor: 3
+       flavor: 100
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
@@ -120,7 +120,7 @@
        image: "kali2024img"
        key_name: os_key
        timeout: 200
-       flavor: 3
+       flavor: 100
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
@@ -175,7 +175,7 @@
        image: "kali2024img"
        key_name: os_key
        timeout: 200
-       flavor: 3
+       flavor: 100
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
@@ -230,7 +230,7 @@
        image: "kali2024img"
        key_name: os_key
        timeout: 200
-       flavor: 3
+       flavor: 100
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
@@ -285,7 +285,7 @@
        image: "kali2024img"
        key_name: os_key
        timeout: 200
-       flavor: 3
+       flavor: 100
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
@@ -340,7 +340,7 @@
        image: "kali2024img"
        key_name: os_key
        timeout: 200
-       flavor: 3
+       flavor: 100
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
@@ -392,7 +392,7 @@
        image: "kali2024img"
        key_name: os_key
        timeout: 200
-       flavor: 3
+       flavor: 100
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
@@ -447,7 +447,7 @@
        image: "kali2024img"
        key_name: os_key
        timeout: 200
-       flavor: 3
+       flavor: 100
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
@@ -502,7 +502,7 @@
        image: "kali2024img"
        key_name: os_key
        timeout: 200
-       flavor: 3
+       flavor: 100
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
@@ -557,7 +557,7 @@
        image: "kali2024img"
        key_name: os_key
        timeout: 200
-       flavor: 3
+       flavor: 100
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
