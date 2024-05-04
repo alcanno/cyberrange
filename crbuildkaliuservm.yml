@@ -616,7 +616,7 @@
 
   - name: Set fact for VNC password
     set_fact:
-       vm_info: "{{ ansible_default_ipv4.address }} : {{ shellout.stdout_lines }}"
+       vm_info: "{{ shellout.stdout_lines }} : {{ ansible_default_ipv4.address }}"
            
   - name: Output VNC password
     debug:
