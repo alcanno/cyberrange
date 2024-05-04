@@ -621,7 +621,7 @@
        
   - name: Set fact for VMs
     set_fact:
-       vm_info: "{{ hostvars[inventory_hostname][ansible_host] }} : {{ shellout.stdout_lines }}"
+       vm_info: "{{ hostvars[inventory_hostname]['ansible_host'] }} : {{ shellout.stdout_lines }}"
            
   - name: Output VNC password
     debug:
