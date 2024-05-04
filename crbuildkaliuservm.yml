@@ -616,7 +616,7 @@
 
   - name: Debug inventory
     debug:
-      var: hostvars
+      var: ansible_all_ipv4_addresses
        
   - name: Set fact for VNC password
     set_fact:
