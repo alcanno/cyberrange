@@ -609,11 +609,6 @@
   hosts: cr_server_lnx_grp
   vars:
     ansible_user: kali
-
-  tasks:
-  - name: Debug inventory - server 
-    debug:
-      var: cr_server_lnx_grp
         
   - name: Run command to change passwd
     shell: "echo $(date) | md5sum | awk '{print substr($1,length($1)-12)}' > /home/kali/pass.txt && cat /home/kali/pass.txt | vncpasswd -f > /home/kali/.vnc/passwd && cat /home/kali/pass.txt"
@@ -621,7 +616,7 @@
 
   - name: Set fact for VNC password
     set_fact:
-       vm_info: "{{ shellout }} : {{ ansible_default_ipv4.address }}"
+       vm_info: "{{ shellout.stdout_lines }} : {{ ansible_default_ipv4.address }}"
            
   - name: Output VNC password
     debug:
