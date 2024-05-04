@@ -618,9 +618,13 @@
   - name: Run command to change passwd
     shell: "echo $(date) | md5sum | awk '{print substr($1,length($1)-12)}' > /home/kali/pass.txt && cat /home/kali/pass.txt | vncpasswd -f > /home/kali/.vnc/passwd && cat /home/kali/pass.txt"
     register: shellout
-    
+
+  - name: Set fact for floating IPs
+    set_fact:
+       vm_info: "{{ shellout }} : {{ ansible_default_ipv4.address }}"
+           
   - name: Output VNC password
     debug:
-       var: shellout 
+       var: vm_info
  
                                                                                                              
