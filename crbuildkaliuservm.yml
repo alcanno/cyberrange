@@ -617,7 +617,7 @@
 
   - name: Output VNC password
     debug:
-       var: hostvars[inventory_hostname][ansible_host]
+       var: hostvars[inventory_hostname]['ansible_host']
        
   - name: Set fact for VMs
     set_fact:
