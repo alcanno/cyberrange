@@ -617,11 +617,11 @@
 
   - name: Output VNC password
     debug:
-       var: hostvars[inventory_hostname]
+       var: hostvars[inventory_hostname][ansible_host]
        
   - name: Set fact for VMs
     set_fact:
-       vm_info: "{{ ansible_default_ipv4.address }} : {{ shellout.stdout_lines }}"
+       vm_info: "{{ hostvars[inventory_hostname][ansible_host] }} : {{ shellout.stdout_lines }}"
            
   - name: Output VNC password
     debug:
