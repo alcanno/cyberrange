@@ -613,14 +613,10 @@
   - name: Run command to change passwd
     shell: "echo $(date) | md5sum | awk '{print substr($1,length($1)-12)}' > /home/kali/pass.txt && cat /home/kali/pass.txt | vncpasswd -f > /home/kali/.vnc/passwd && cat /home/kali/pass.txt"
     register: shellout
-
-  - name: Debug inventory
-    debug:
-      var: ansible_all_ipv4_addresses
        
   - name: Set fact for VNC password
     set_fact:
-       vm_info: "{{ ansible_default_ipv4.address }} : {{ shellout.stdout_lines }}"
+       vm_info: "{{ ansible_all_ipv4_addresses }} : {{ shellout.stdout_lines }}"
            
   - name: Output VNC password
     debug:
