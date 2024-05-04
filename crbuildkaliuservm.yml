@@ -614,9 +614,9 @@
     shell: "echo $(date) | md5sum | awk '{print substr($1,length($1)-12)}' > /home/kali/pass.txt && cat /home/kali/pass.txt | vncpasswd -f > /home/kali/.vnc/passwd && cat /home/kali/pass.txt"
     register: shellout
 
-  - name: Output hostvars
+  - name: Debug inventory
     debug:
-       var: hostvars
+      var: hostvars
        
   - name: Set fact for VNC password
     set_fact:
