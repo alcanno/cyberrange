@@ -621,5 +621,4 @@
   - name: Output VNC password
     debug:
        var: vm_info
- 
-                                                                                                             
+
