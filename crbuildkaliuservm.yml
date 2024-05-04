@@ -615,7 +615,7 @@
     shell: "echo $(date) | md5sum | awk '{print substr($1,length($1)-12)}' > /home/kali/pass.txt && cat /home/kali/pass.txt | vncpasswd -f > /home/kali/.vnc/passwd && cat /home/kali/pass.txt"
     register: shellout
 
-  - name: Output VNC password
+  - name: Output VMs floating IPs
     debug:
        var: hostvars[inventory_hostname]['ansible_host']
        
