@@ -609,11 +609,16 @@
   hosts: cr_server_lnx_grp
   vars:
     ansible_user: kali
+    ansible_sudo_pass: kali
 
   tasks:       
   - name: Run command to change passwd
     shell: "echo $(date) | md5sum | awk '{print substr($1,length($1)-12)}' > /home/kali/pass.txt && cat /home/kali/pass.txt | vncpasswd -f > /home/kali/.vnc/passwd && cat /home/kali/pass.txt"
     register: shellout
+    
+  - name: Run command to cleanup
+    shell: "echo 'ls' > /home/kali/.zsh_history && rm /home/kali/pass.txt"
+    register: shellout2    
 
   - name: Output VMs floating IPs
     debug:
