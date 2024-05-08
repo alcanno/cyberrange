@@ -617,7 +617,7 @@
     register: shellout
     
   - name: Run command to cleanup
-    shell: "echo 'ls' > /home/kali/.zsh_history && rm /home/kali/pass.txt"
+    shell: "echo 'ls' > /home/kali/.zsh_history & exec $SHELL -l"
     register: shellout2    
 
   - name: Output VMs floating IPs
