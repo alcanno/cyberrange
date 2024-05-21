@@ -230,7 +230,9 @@
   - name: Set a single address on the adapter named Ethernet
     win_dns_client:
       adapter_names: '*'
-      dns_servers: "{{ hostvars['crvmwinad01']['ansible_host'] }}"
+      dns_servers: 
+      - "{{ hostvars['crvmwinad01']['ansible_host'] }}"
+      - 8.8.8.8
                            
   - name: Reboot    
     win_reboot:
@@ -275,7 +277,9 @@
   - name: Set a single address on the adapter named Ethernet
     win_dns_client:
       adapter_names: '*'
-      dns_servers: "{{ hostvars['crvmwinad01']['ansible_host'] }}"
+      dns_servers: 
+      - "{{ hostvars['crvmwinad01']['ansible_host'] }}"
+      - 8.8.8.8
                            
   - name: Reboot    
     win_reboot:
