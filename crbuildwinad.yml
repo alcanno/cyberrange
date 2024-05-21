@@ -7,7 +7,7 @@
     os_server:
        state: present
        name: crvmwinad01
-       image: "win2k16ADimg"
+       image: "win2k19adimg"
        key_name: os_key
        timeout: 200
        flavor: 3
