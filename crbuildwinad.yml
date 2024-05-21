@@ -233,7 +233,8 @@
       dns_servers: 
       - "{{ hostvars['crvmwinad01']['ansible_host'] }}"
       - 8.8.8.8
-                           
+    register: dns_ip_add1
+                    
   - name: Reboot    
     win_reboot:
     when: server_rename.reboot_required
@@ -280,6 +281,7 @@
       dns_servers: 
       - "{{ hostvars['crvmwinad01']['ansible_host'] }}"
       - 8.8.8.8
+    register: dns_ip_add2
                            
   - name: Reboot    
     win_reboot:
