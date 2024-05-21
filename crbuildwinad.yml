@@ -234,7 +234,11 @@
       - "{{ hostvars['crvmwinad01']['ansible_host'] }}"
       - "8.8.8.8"
     register: dns_ip_add1
-                    
+
+  - name: Debug inventory - DNS IP Address
+    debug:
+      var: dns_ip_add1
+                          
   - name: Reboot    
     win_reboot:
     when: server_rename.reboot_required
@@ -282,7 +286,11 @@
       - "{{ hostvars['crvmwinad01']['ansible_host'] }}"
       - "8.8.8.8"
     register: dns_ip_add2
-                           
+
+  - name: Debug inventory - DNS IP Address
+    debug:
+      var: dns_ip_add2
+                                 
   - name: Reboot    
     win_reboot:
     when: server_rename.reboot_required
