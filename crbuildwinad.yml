@@ -10,7 +10,7 @@
        image: "win2k19adimg"
        key_name: os_key
        timeout: 200
-       flavor: 3
+       flavor: 101
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
