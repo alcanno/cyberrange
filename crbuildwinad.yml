@@ -232,7 +232,7 @@
       adapter_names: '*'
       dns_servers: 
       - "{{ hostvars['crvmwinad01']['ansible_host'] }}"
-      - 8.8.8.8
+      - "8.8.8.8"
     register: dns_ip_add1
                     
   - name: Reboot    
@@ -280,7 +280,7 @@
       adapter_names: '*'
       dns_servers: 
       - "{{ hostvars['crvmwinad01']['ansible_host'] }}"
-      - 8.8.8.8
+      - "8.8.8.8"
     register: dns_ip_add2
                            
   - name: Reboot    
