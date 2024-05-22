@@ -214,7 +214,6 @@
     ansible_user: "{{ lookup('env', 'VM_NODE_USER_02') }}"
     ansible_password: "{{ lookup('env', 'VM_NODE_PASSWORD') }}"
     ansible_connection: winrm
-    ansible_port: 5985 
     ansible_shell_type: powershell          
     ansible_winrm_server_cert_validation: ignore
         
@@ -267,7 +266,6 @@
     ansible_user: "{{ lookup('env', 'VM_NODE_USER_02') }}"
     ansible_password: "{{ lookup('env', 'VM_NODE_PASSWORD') }}"
     ansible_connection: winrm
-    ansible_port: 5985
     ansible_shell_type: powershell   
     ansible_winrm_server_cert_validation: ignore
         
