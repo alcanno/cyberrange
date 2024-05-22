@@ -232,15 +232,9 @@
   - name: Set a single address on the adapter named Ethernet
     win_dns_client:
       adapter_names: '*'
-      dns_servers: 
-      - "{{ hostvars['crvmwinad01']['ansible_host'] }}"
-      - "8.8.8.8"
+      dns_servers: "{{ hostvars['crvmwinad01']['ansible_host'] }}"
     register: dns_ip_add1
-
-  - name: Debug inventory - DNS IP Address
-    debug:
-      var: dns_ip_add1
-                          
+                         
   - name: Reboot    
     win_reboot:
     when: server_rename.reboot_required
@@ -258,7 +252,19 @@
   - name: Reboot    
     win_reboot:
     when: domain_join_db01.reboot_required
-                 
+
+  - name: Add Alternate DNS 8.8.8.8
+    win_dns_client:
+      adapter_names: '*'
+      dns_servers: 
+      - "{{ hostvars['crvmwinad01']['ansible_host'] }}"
+      - "8.8.8.8"
+    register: dns_ip_add1
+
+  - name: Debug inventory - DNS IP Address
+    debug:
+      var: dns_ip_add1
+                           
 - name: CyberRange - AP01 - Play 3
   hosts: cr_server_ap_grp
   gather_facts: no
@@ -286,9 +292,7 @@
   - name: Set a single address on the adapter named Ethernet
     win_dns_client:
       adapter_names: '*'
-      dns_servers: 
-      - "{{ hostvars['crvmwinad01']['ansible_host'] }}"
-      - "8.8.8.8"
+      dns_servers: "{{ hostvars['crvmwinad01']['ansible_host'] }}"
     register: dns_ip_add2
 
   - name: Debug inventory - DNS IP Address
@@ -312,7 +316,19 @@
   - name: Reboot    
     win_reboot:
     when: domain_join_ap01.reboot_required    
-         
+
+  - name: Add Alternate DNS 8.8.8.8
+    win_dns_client:
+      adapter_names: '*'
+      dns_servers: 
+      - "{{ hostvars['crvmwinad01']['ansible_host'] }}"
+      - "8.8.8.8"
+    register: dns_ip_add2
+
+  - name: Debug inventory - DNS IP Address
+    debug:
+      var: dns_ip_add2
+               
 - name: CyberRange - Linux - Play 4
   hosts: cr_server_lnx_grp
   vars:
