@@ -37,7 +37,7 @@
     os_server:
        state: present
        name: crvmwindb01
-       image: "win2k16img"
+       image: "win2k19img"
        key_name: os_key
        timeout: 200
        flavor: 101
@@ -91,7 +91,7 @@
     os_server:
        state: present
        name: crvmwinap01
-       image: "win2k16img"
+       image: "win2k19img"
        key_name: os_key
        timeout: 200
        flavor: 101
