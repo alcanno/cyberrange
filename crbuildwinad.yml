@@ -192,7 +192,6 @@
   - name: Output floating ip
     debug:
        var: floating_ips
-
        
   - name: Add VM to inventory
     add_host:
@@ -204,7 +203,42 @@
   - name: Debug inventory
     debug:
       var: hostvars
-      
+
+- name: CyberRange - AD01 - Play 1
+  hosts: cr_ad_grp
+  gather_facts: no
+  collections:
+    - openstack.cloud
+  vars:
+    ansible_user: "{{ lookup('env', 'VM_NODE_USER_02') }}"
+    ansible_password: "{{ lookup('env', 'VM_NODE_PASSWORD') }}"
+    ansible_connection: winrm
+    ansible_shell_type: powershell
+    ansible_ssh_port: 5986
+    ansible_winrm_transport: ntlm     
+    ansible_winrm_server_cert_validation: ignore
+        
+  tasks:         
+  - name: Run command MDE Agent
+    win_command: 
+      cmd: C:\Users\Administrator\Documents\mdewin2019.cmd
+    register: result
+    ignore_errors: yes
+  
+  - name: Display output
+    debug:
+      var: result.stdout_lines 
+ 
+  - name: Run command TMV1 Agent
+    win_command: 
+      cmd: C:\Users\Administrator\Documents\tmv1win2019.exe
+    register: result
+    ignore_errors: yes
+  
+  - name: Display output
+    debug:
+      var: result.stdout_lines 
+                  
 - name: CyberRange - DB01 - Play 2
   hosts: cr_server_db_grp
   gather_facts: no
@@ -229,16 +263,42 @@
     debug:
       var: hostvars['crvmwinad01']['ansible_host']
 
+  - name: Reboot    
+    win_reboot:
+    when: server_rename.reboot_required
+    
+  - name: Set a single address on the adapter named Ethernet
+    win_dns_client:
+      adapter_names: '*'
+      dns_servers: "8.8.8.8"
+    register: dns_ip_add1
+
+  - name: Run command MDE Agent
+    win_command: 
+      cmd: C:\Users\Administrator\Documents\mdewin2019.cmd
+    register: result
+    ignore_errors: yes
+  
+  - name: Display output
+    debug:
+      var: result.stdout_lines 
+ 
+  - name: Run command TMV1 Agent
+    win_command: 
+      cmd: C:\Users\Administrator\Documents\tmv1win2019.exe
+    register: result
+    ignore_errors: yes
+  
+  - name: Display output
+    debug:
+      var: result.stdout_lines 
+      
   - name: Set a single address on the adapter named Ethernet
     win_dns_client:
       adapter_names: '*'
       dns_servers: "{{ hostvars['crvmwinad01']['ansible_host'] }}"
     register: dns_ip_add1
                          
-  - name: Reboot    
-    win_reboot:
-    when: server_rename.reboot_required
-
   - name: Join DB01 to the domain
     win_domain_membership:
       dns_domain_name: "{{ lookup('env', 'VM_NODE_DOMAIN') }}"
@@ -288,7 +348,37 @@
   - name: Debug inventory - DNS IP Address
     debug:
       var: hostvars['crvmwinad01']['ansible_host']
+                                
+  - name: Reboot    
+    win_reboot:
+    when: server_rename.reboot_required
 
+  - name: Set a single address on the adapter named Ethernet
+    win_dns_client:
+      adapter_names: '*'
+      dns_servers: "8.8.8.8"
+    register: dns_ip_add2
+
+  - name: Run command MDE Agent
+    win_command: 
+      cmd: C:\Users\Administrator\Documents\mdewin2019.cmd
+    register: result
+    ignore_errors: yes
+  
+  - name: Display output
+    debug:
+      var: result.stdout_lines 
+ 
+  - name: Run command TMV1 Agent
+    win_command: 
+      cmd: C:\Users\Administrator\Documents\tmv1win2019.exe
+    register: result
+    ignore_errors: yes
+  
+  - name: Display output
+    debug:
+      var: result.stdout_lines 
+ 
   - name: Set a single address on the adapter named Ethernet
     win_dns_client:
       adapter_names: '*'
@@ -298,11 +388,7 @@
   - name: Debug inventory - DNS IP Address
     debug:
       var: dns_ip_add2
-                                 
-  - name: Reboot    
-    win_reboot:
-    when: server_rename.reboot_required
-
+      
   - name: Join AP01 to the domain
     win_domain_membership:
       dns_domain_name: "{{ lookup('env', 'VM_NODE_DOMAIN') }}"
@@ -328,7 +414,7 @@
   - name: Debug inventory - DNS IP Address
     debug:
       var: dns_ip_add2
-               
+        
 - name: CyberRange - Linux - Play 4
   hosts: cr_server_lnx_grp
   vars:
