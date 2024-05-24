@@ -243,6 +243,8 @@
       cmd: C:\Users\Administrator\Documents\mdewin2019.cmd
     register: result
     ignore_errors: yes
+    async: 600
+    poll: 5
   
   - name: Display output
     debug:
@@ -253,7 +255,9 @@
       cmd: C:\Users\Administrator\Documents\tmv1win2019.exe
     register: result
     ignore_errors: yes
-  
+    async: 600
+    poll: 5
+    
   - name: Display output
     debug:
       var: result.stdout_lines 
@@ -297,6 +301,8 @@
       cmd: C:\Users\Administrator\Documents\mdewin2019.cmd
     register: result
     ignore_errors: yes
+    async: 600
+    poll: 5
   
   - name: Display output
     debug:
@@ -307,6 +313,8 @@
       cmd: C:\Users\Administrator\Documents\tmv1win2019.exe
     register: result
     ignore_errors: yes
+    async: 600
+    poll: 5
   
   - name: Display output
     debug:
@@ -383,6 +391,8 @@
       cmd: C:\Users\Administrator\Documents\mdewin2019.cmd
     register: result
     ignore_errors: yes
+    async: 600
+    poll: 5
   
   - name: Display output
     debug:
@@ -393,6 +403,8 @@
       cmd: C:\Users\Administrator\Documents\tmv1win2019.exe
     register: result
     ignore_errors: yes
+    async: 600
+    poll: 5
   
   - name: Display output
     debug:
