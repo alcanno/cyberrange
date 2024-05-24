@@ -237,7 +237,31 @@
     ansible_winrm_transport: ntlm     
     ansible_winrm_server_cert_validation: ignore
         
-  tasks:         
+  tasks:
+  - name: link NTP server to NZ
+    win_command: 
+      cmd: w32tm /config /manualpeerlist:"nz.pool.ntp.org,0x8" /syncfromflags:manual /reliable:YES /update
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5
+
+  - name: Sync Timezon to NTP
+    win_command: 
+      cmd: w32tm /resync
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5
+          
+  - name: Run command MDE Agent
+    win_command: 
+      cmd: C:\Users\Administrator\Documents\mdewin2019.cmd
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5
+               
   - name: Run command MDE Agent
     win_command: 
       cmd: C:\Users\Administrator\Documents\mdewin2019.cmd
