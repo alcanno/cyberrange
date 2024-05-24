@@ -33,7 +33,7 @@
   - name: Create floating ip - AD01
     os_floating_ip:
        state: present
-       network: public
+       network: public 
        server: crvmwinad01 
        auth:
          auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
