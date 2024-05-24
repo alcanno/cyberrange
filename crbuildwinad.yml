@@ -26,10 +26,29 @@
     poll: 5
     register: vm_ad01_created
 
+  - name: Debug inventory - vm_ad01_created 
+    debug:
+      var: vm_ad01_created
+      
+  - name: Create floating ip - AD01
+    os_floating_ip:
+       state: present
+       network: public
+       server: crvmwinad01 
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"                 
+    register: floating_ip_info
+    
   - name: Add VM to inventory
     add_host:
+      #name: "{{ vm_ad01_created.server.hostname }}"
+      #ansible_host: "{{ vm_ad01_created.server.addresses.shared[0].addr }}"      
       name: "{{ vm_ad01_created.server.hostname }}"
-      ansible_host: "{{ vm_ad01_created.server.addresses.shared[0].addr }}"      
+      ansible_host: "{{ floating_ip_info.floating_ip.floating_ip_address }}"      
       groups: cr_ad_grp
     when: vm_ad01_created is defined and vm_ad01_created.changed    
 
