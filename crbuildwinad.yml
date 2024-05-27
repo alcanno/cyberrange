@@ -509,6 +509,9 @@
  
   - name: Run command on OpenStack VM
     shell: "echo $(date) | md5sum | awk '{print substr($1,length($1)-31)}' > /root/root.txt"
+    
+  - name: Run command on OpenStack VM
+    shell: "mkdir /tmp/uploads && chown ubuntu:ubuntu /tmp/uploads"
      
   
          
