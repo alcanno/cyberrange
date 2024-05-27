@@ -338,7 +338,7 @@
         
   - name: Grant user remote desktop access
     win_command: 
-      cmd: "net localgroup 'Remote Desktop Users' {{ lookup('env', 'WIN_USER_01') }} /ADD"
+      cmd: 'net localgroup "Remote Desktop Users" {{ lookup("env", "WIN_USER_02") }} /ADD'
     register: result
     ignore_errors: yes
     async: 600
@@ -460,7 +460,7 @@
         
   - name: Grant user remote desktop access
     win_command: 
-      cmd: "net localgroup 'Remote Desktop Users' {{ lookup('env', 'WIN_USER_02') }} /ADD"
+      cmd: 'net localgroup "Remote Desktop Users" {{ lookup("env", "WIN_USER_02") }} /ADD'
     register: result
     ignore_errors: yes
     async: 600
