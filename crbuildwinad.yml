@@ -338,12 +338,20 @@
         
   - name: Grant user remote desktop access
     win_command: 
-      cmd: 'net localgroup "Remote Desktop Users" {{ lookup("env", "WIN_USER_02") }} /ADD'
+      cmd: 'net localgroup "Remote Desktop Users" {{ lookup("env", "WIN_USER_01") }} /ADD'
     register: result
     ignore_errors: yes
     async: 600
     poll: 5        
-    
+
+  - name: Add CMDKEY
+    win_command: 
+      cmd: 'cmdkey /generic:"crvmwinap01" /user:"{{ lookup("env", "WIN_USER_02") }}" /pass:"{{ lookup("env", "WIN_USER_02_PASSWORD") }}"'
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5   
+        
   - name: Run command MDE Agent
     win_command: 
       cmd: dir #C:\Users\Administrator\Documents\mdewin2019.cmd
