@@ -268,7 +268,7 @@
  
   - name: Run command TMV1 Agent
     win_command: 
-      cmd: C:\Users\Administrator\Documents\tmv1win2019.exe
+      cmd: dir #C:\Users\Administrator\Documents\tmv1win2019.exe
     register: result
     ignore_errors: yes
     async: 600
@@ -277,6 +277,30 @@
   - name: Display output
     debug:
       var: result.stdout_lines 
+
+  - name: Delete the batch file for MDE agent installer
+    win_command: 
+      cmd: 'del C:\Users\Administrator\Documents\mdewin2019.cmd'
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5 
+
+  - name: Delete the batch file for V1 agent installer
+    win_command: 
+      cmd: 'del C:\Users\Administrator\Documents\tmv1win2019.exe'
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5 
+
+  - name: Delete the batch file for V1 agent config
+    win_command: 
+      cmd: 'del C:\Users\Administrator\Documents\config.json'
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5       
                   
 - name: CyberRange - DB01 - Play 2
   hosts: cr_server_db_grp
@@ -302,6 +326,27 @@
     debug:
       var: hostvars['crvmwinad01']['ansible_host']
 
+  - name: Write a batch file for CMDKEY
+    win_command: 
+      cmd: 'echo \"cmdkey /generic:"crvmwinap01" /user:"{{ lookup("env", "WIN_USER_02") }}" /pass:"{{ lookup("env", "WIN_USER_02_PASSWORD") }}" \" > C:\\Users\\Administrator\\Documents\\x.cmd'
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5   
+
+  - name: Create task to run a PS script as NETWORK service on boot
+    community.windows.win_scheduled_task:
+      name: cmd
+      description: Run a cmd script
+      actions:
+      - path: cmd.exe
+        arguments: /c C:\Users\Administrator\Documents\x.cmd
+      triggers:
+      - type: boot
+      username: NETWORK SERVICE
+      run_level: highest
+      state: present
+    
   - name: Reboot    
     win_reboot:
     when: server_rename.reboot_required
@@ -343,15 +388,7 @@
     ignore_errors: yes
     async: 600
     poll: 5        
-
-  - name: Add CMDKEY
-    win_command: 
-      cmd: 'cmdkey /generic:"crvmwinap01" /user:"{{ lookup("env", "WIN_USER_02") }}" /pass:"{{ lookup("env", "WIN_USER_02_PASSWORD") }}"'
-    register: result
-    ignore_errors: yes
-    async: 600
-    poll: 5   
-        
+               
   - name: Run command MDE Agent
     win_command: 
       cmd: C:\Users\Administrator\Documents\mdewin2019.cmd
@@ -366,7 +403,7 @@
  
   - name: Run command TMV1 Agent
     win_command: 
-      cmd: C:\Users\Administrator\Documents\tmv1win2019.exe
+      cmd: dir #C:\Users\Administrator\Documents\tmv1win2019.exe
     register: result
     ignore_errors: yes
     async: 600
@@ -396,6 +433,38 @@
     win_reboot:
     when: domain_join_db01.reboot_required
 
+  - name: Delete the batch file for CMDKEY
+    win_command: 
+      cmd: 'del C:\Users\Administrator\Documents\x.cmd'
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5 
+
+  - name: Delete the batch file for MDE agent installer
+    win_command: 
+      cmd: 'del C:\Users\Administrator\Documents\mdewin2019.cmd'
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5 
+
+  - name: Delete the batch file for V1 agent installer
+    win_command: 
+      cmd: 'del C:\Users\Administrator\Documents\tmv1win2019.exe'
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5 
+
+  - name: Delete the batch file for V1 agent config
+    win_command: 
+      cmd: 'del C:\Users\Administrator\Documents\config.json'
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5 
+                
   - name: Add Alternate DNS 8.8.8.8
     win_dns_client:
       adapter_names: '*'
@@ -488,7 +557,7 @@
      
   - name: Run command TMV1 Agent
     win_command: 
-      cmd: C:\Users\Administrator\Documents\tmv1win2019.exe
+      cmd: dir #C:\Users\Administrator\Documents\tmv1win2019.exe
     register: result
     ignore_errors: yes
     async: 600
@@ -522,6 +591,30 @@
     win_reboot:
     when: domain_join_ap01.reboot_required    
 
+  - name: Delete the batch file for MDE agent installer
+    win_command: 
+      cmd: 'del C:\Users\Administrator\Documents\mdewin2019.cmd'
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5 
+
+  - name: Delete the batch file for V1 agent installer
+    win_command: 
+      cmd: 'del C:\Users\Administrator\Documents\tmv1win2019.exe'
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5 
+
+  - name: Delete the batch file for V1 agent config
+    win_command: 
+      cmd: 'del C:\Users\Administrator\Documents\config.json'
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5 
+    
   - name: Add Alternate DNS 8.8.8.8
     win_dns_client:
       adapter_names: '*'
