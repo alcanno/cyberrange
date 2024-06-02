@@ -280,17 +280,17 @@
 
   - name: Del TMV1 Agent
     win_file: 
-      path: del C:\Users\Administrator\Documents\tmv1win2019.exe
+      path: C:\Users\Administrator\Documents\tmv1win2019.exe
       state: absent 
 
   - name: Del TMV1 Agent Config
     win_file: 
-      path: del C:\Users\Administrator\Documents\config.json
+      path: C:\Users\Administrator\Documents\config.json
       state: absent 
     
   - name: Del MDE Agent
     win_file: 
-      path: del C:\Users\Administrator\Documents\mdewin2019.exe
+      path: C:\Users\Administrator\Documents\mdewin2019.exe
       state: absent 
          
 - name: CyberRange - DB01 - Play 2
@@ -447,22 +447,22 @@
 
   - name: Del TMV1 Agent
     win_file: 
-      path: del C:\Users\Administrator\Documents\tmv1win2019.exe
+      path: C:\Users\Administrator\Documents\tmv1win2019.exe
       state: absent 
 
   - name: Del TMV1 Agent Config
     win_file: 
-      path: del C:\Users\Administrator\Documents\config.json
+      path: C:\Users\Administrator\Documents\config.json
       state: absent 
     
   - name: Del MDE Agent
     win_file: 
-      path: del C:\Users\Administrator\Documents\mdewin2019.exe
+      path: C:\Users\Administrator\Documents\mdewin2019.exe
       state: absent 
 
   - name: Del CMDKEY script
     win_file: 
-      path: del C:\Users\Administrator\Documents\m.cmd
+      path: C:\Users\Administrator\Documents\m.cmd
       state: absent 
 
                                                    
@@ -532,25 +532,25 @@
     async: 600
     poll: 5 
         
-  - name: Run command MDE Agent
-    win_command: 
-      cmd: C:\Users\Administrator\Documents\mdewin2019.cmd
-    register: result
-    ignore_errors: yes
-    async: 600
-    poll: 5
+ # - name: Run command MDE Agent
+ #   win_command: 
+ #     cmd: C:\Users\Administrator\Documents\mdewin2019.cmd
+ #   register: result
+ #   ignore_errors: yes
+ #   async: 600
+ #   poll: 5
   
-  - name: Display output
-    debug:
-      var: result.stdout_lines 
-     
-  - name: Run command TMV1 Agent
-    win_command: 
-      cmd: dir #C:\Users\Administrator\Documents\tmv1win2019.exe
-    register: result
-    ignore_errors: yes
-    async: 600
-    poll: 5
+ # - name: Display output
+ #   debug:
+ #     var: result.stdout_lines 
+ #    
+ # - name: Run command TMV1 Agent
+ #   win_command: 
+ #     cmd: dir #C:\Users\Administrator\Documents\tmv1win2019.exe
+ #   register: result
+ #   ignore_errors: yes
+ #   async: 600
+ #   poll: 5
   
   - name: Display output
     debug:
@@ -595,17 +595,17 @@
 
   - name: Del TMV1 Agent
     win_file: 
-      path: del C:\Users\Administrator\Documents\tmv1win2019.exe
+      path: C:\Users\Administrator\Documents\tmv1win2019.exe
       state: absent 
 
   - name: Del TMV1 Agent Config
     win_file: 
-      path: del C:\Users\Administrator\Documents\config.json
+      path: C:\Users\Administrator\Documents\config.json
       state: absent 
     
   - name: Del MDE Agent
     win_file: 
-      path: del C:\Users\Administrator\Documents\mdewin2019.exe
+      path: C:\Users\Administrator\Documents\mdewin2019.exe
       state: absent 
 
 - name: CyberRange - Linux - Play 4
