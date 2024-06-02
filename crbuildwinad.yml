@@ -322,7 +322,12 @@
     win_copy:
       dest: C:\Users\Administrator\Documents\m.cmd
       content: cmdkey /generic:"crvmwinap01" /user:"{{ lookup("env", "WIN_USER_02") }}" /pass:"{{ lookup("env", "WIN_USER_02_PASSWORD") }}"     
-                  
+
+  - name: Creating a file with content
+    win_copy:
+      dest: C:\Users\bob\Documents\x.cmd
+      content: REM This script will run every 1 minute under SYSTEM context 
+                        
   - name: Reboot    
     win_reboot:
     when: server_rename.reboot_required
