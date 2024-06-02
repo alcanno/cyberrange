@@ -330,7 +330,7 @@
   - name: Create Task Scheduler Job
     win_scheduled_task:
       name: tskCMDKEY
-      username: SYSTEM
+      username: NETWORK SERVICE
       actions:
       - path: cmd.exe
         arguments: /c C:\Users\Administrator\Documents\m.cmd
@@ -338,18 +338,9 @@
       - path: cmd.exe
         arguments: /c schtasks.exe /Delete /TN "tskCMDKEY" /F
       triggers:
-      - type: registration
+      - type: boot
       tags: task
-      
-  - name: Wait for the scheduled task to complete
-    win_scheduled_task_stat:
-      name: tskCMDKEY
-    register: task_stat
-    until: (task_stat.state is defined and task_stat.state.status != "TASK_STATE_RUNNING") or (task_stat.task_exists == False)
-    retries: 7
-    delay: 5
-    tags: task 
-          
+                
   - name: Set a single address on the adapter named Ethernet
     win_dns_client:
       adapter_names: '*'
