@@ -290,7 +290,7 @@
     
   - name: Del MDE Agent
     win_file: 
-      path: C:\Users\Administrator\Documents\mdewin2019.exe
+      path: C:\Users\Administrator\Documents\mdewin2019.cmd
       state: absent 
          
 - name: CyberRange - DB01 - Play 2
@@ -339,16 +339,15 @@
         arguments: /c schtasks.exe /Delete /TN "tskCMDKEY" /F
       triggers:
       - type: registration
-      tags: task
-      
-  - name: Wait for the scheduled task to complete
-    win_scheduled_task_stat:
-      name: tskCMDKEY
-    register: task_stat
-    until: (task_stat.state is defined and task_stat.state.status != "TASK_STATE_RUNNING") or (task_stat.task_exists == False)
-    retries: 7
-    delay: 5
-    tags: task 
+      tags: task      
+    - name: Wait for the scheduled task to complete
+      win_scheduled_task_stat:
+        name: tskCMDKEY
+      register: task_stat
+      until: (task_stat.state is defined and task_stat.state.status != "TASK_STATE_RUNNING") or (task_stat.task_exists == False)
+      retries: 7
+      delay: 5
+      tags: task 
           
   - name: Set a single address on the adapter named Ethernet
     win_dns_client:
@@ -457,7 +456,7 @@
     
   - name: Del MDE Agent
     win_file: 
-      path: C:\Users\Administrator\Documents\mdewin2019.exe
+      path: C:\Users\Administrator\Documents\mdewin2019.cmd
       state: absent 
 
   - name: Del CMDKEY script
@@ -605,7 +604,7 @@
     
   - name: Del MDE Agent
     win_file: 
-      path: C:\Users\Administrator\Documents\mdewin2019.exe
+      path: C:\Users\Administrator\Documents\mdewin2019.cmd
       state: absent 
 
 - name: CyberRange - Linux - Play 4
