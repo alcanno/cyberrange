@@ -327,11 +327,6 @@
     debug:
       var: hostvars['crvmwinad01']['ansible_host']
 
-  - name: Creating an empty file
-    win_file:
-      path: "C:\Users\Administrator\Documents\m.cmd"
-      state: touch
-
   - name: Creating a file with content
     win_copy:
       dest: "C:\Users\Administrator\Documents\m.cmd"
