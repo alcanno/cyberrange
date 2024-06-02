@@ -332,7 +332,7 @@
       name: tskCMDKEY
       username: SYSTEM
       actions:
-      - path: 'C:\Windows\System32\cmd.exe'
+      - path: cmd.exe
         arguments: /c C:\Users\Administrator\Documents\m.cmd
       # Remove this action if the task shouldn't be deleted on completion
       - path: cmd.exe
