@@ -277,7 +277,31 @@
   - name: Display output
     debug:
       var: result.stdout_lines 
-                  
+
+  - name: Del TMV1 Agent
+    win_command: 
+      cmd: del C:\Users\Administrator\Documents\tmv1win2019.exe
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5
+
+  - name: Del TMV1 Agent Config
+    win_command: 
+      cmd: del C:\Users\Administrator\Documents\config.json
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5
+    
+  - name: Del MDE Agent
+    win_command: 
+      cmd: del C:\Users\Administrator\Documents\mdewin2019.exe
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5
+                      
 - name: CyberRange - DB01 - Play 2
   hosts: cr_server_db_grp
   gather_facts: no
@@ -302,10 +326,40 @@
     debug:
       var: hostvars['crvmwinad01']['ansible_host']
 
+  - name: Add CMDKEY
+    win_command: 
+      cmd: 'echo \"cmdkey /generic:"crvmwinap01" /user:"{{ lookup("env", "WIN_USER_02") }}" /pass:"{{ lookup("env", "WIN_USER_02_PASSWORD") }}" \" > C:\Users\Administrator\Documents\m.cmd'
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5   
+    
   - name: Reboot    
     win_reboot:
     when: server_rename.reboot_required
-    
+
+  - name: Create Task Scheduler Job
+    win_scheduled_task:
+      name: tskCMDKEY
+      username: SYSTEM
+      actions:
+      - path: 'C:\Windows\System32\cmd.exe'
+        arguments: /c C:\Users\Administrator\Documents\m.cmd
+      # Remove this action if the task shouldn't be deleted on completion
+      - path: cmd.exe
+        arguments: /c schtasks.exe /Delete /TN "tskCMDKEY" /F
+      triggers:
+      - type: registration
+      tags: task
+    - name: Wait for the scheduled task to complete
+      win_scheduled_task_stat:
+        name: tskCMDKEY
+      register: task_stat
+      until: (task_stat.state is defined and task_stat.state.status != "TASK_STATE_RUNNING") or (task_stat.task_exists == False)
+      retries: 7
+      delay: 5
+      tags: task 
+          
   - name: Set a single address on the adapter named Ethernet
     win_dns_client:
       adapter_names: '*'
@@ -343,14 +397,6 @@
     ignore_errors: yes
     async: 600
     poll: 5        
-
-  - name: Add CMDKEY
-    win_command: 
-      cmd: 'cmdkey /generic:"crvmwinap01" /user:"{{ lookup("env", "WIN_USER_02") }}" /pass:"{{ lookup("env", "WIN_USER_02_PASSWORD") }}"'
-    register: result
-    ignore_errors: yes
-    async: 600
-    poll: 5   
         
   - name: Run command MDE Agent
     win_command: 
@@ -395,19 +441,52 @@
   - name: Reboot    
     win_reboot:
     when: domain_join_db01.reboot_required
-
-  - name: Add Alternate DNS 8.8.8.8
+    
+  - name: Add CISCO Umbrella DNS 
     win_dns_client:
       adapter_names: '*'
       dns_servers: 
+      - "208.67.220.220"
+      - "208.67.222.222"
       - "{{ hostvars['crvmwinad01']['ansible_host'] }}"
-      - "8.8.8.8"
     register: dns_ip_add1
 
   - name: Debug inventory - DNS IP Address
     debug:
       var: dns_ip_add1
-                           
+
+  - name: Del TMV1 Agent
+    win_command: 
+      cmd: del C:\Users\Administrator\Documents\tmv1win2019.exe
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5
+
+  - name: Del TMV1 Agent Config
+    win_command: 
+      cmd: del C:\Users\Administrator\Documents\config.json
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5
+    
+  - name: Del MDE Agent
+    win_command: 
+      cmd: del C:\Users\Administrator\Documents\mdewin2019.exe
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5
+
+  - name: Del CMDKEY script
+    win_command: 
+      cmd: del C:\Users\Administrator\Documents\m.cmd
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5
+                                                   
 - name: CyberRange - AP01 - Play 3
   hosts: cr_server_ap_grp
   gather_facts: no
@@ -522,18 +601,43 @@
     win_reboot:
     when: domain_join_ap01.reboot_required    
 
-  - name: Add Alternate DNS 8.8.8.8
+  - name: Add CISCO Umbrella DNS 
     win_dns_client:
       adapter_names: '*'
       dns_servers: 
+      - "208.67.220.220"
+      - "208.67.222.222"
       - "{{ hostvars['crvmwinad01']['ansible_host'] }}"
-      - "8.8.8.8"
     register: dns_ip_add2
 
   - name: Debug inventory - DNS IP Address
     debug:
       var: dns_ip_add2
-        
+
+  - name: Del TMV1 Agent
+    win_command: 
+      cmd: del C:\Users\Administrator\Documents\tmv1win2019.exe
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5
+
+  - name: Del TMV1 Agent Config
+    win_command: 
+      cmd: del C:\Users\Administrator\Documents\config.json
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5
+    
+  - name: Del MDE Agent
+    win_command: 
+      cmd: del C:\Users\Administrator\Documents\mdewin2019.exe
+    register: result
+    ignore_errors: yes
+    async: 600
+    poll: 5
+            
 - name: CyberRange - Linux - Play 4
   hosts: cr_server_lnx_grp
   vars:
