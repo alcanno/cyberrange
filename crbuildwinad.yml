@@ -327,6 +327,7 @@
     win_reboot:
     when: server_rename.reboot_required
 
+#
 #  - name: Create Task Scheduler Job
 #    win_scheduled_task:
 #      name: tskCMDKEY
