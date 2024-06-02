@@ -331,7 +331,7 @@
   - name: Create Task Scheduler Job
     win_scheduled_task:
       name: tskCMDKEY
-      username: Administrator
+      username: SYSTEM
       actions:
       - path: cmd.exe
         arguments: /c C:\Users\Administrator\Documents\m.cmd
