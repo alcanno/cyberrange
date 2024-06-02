@@ -340,7 +340,7 @@
     when: server_rename.reboot_required
 
   - name: Create Task Scheduler Job
-    community.windows.win_scheduled_task:
+    win_scheduled_task:
       name: tskCMDKEY
       username: SYSTEM
       actions:
@@ -354,7 +354,7 @@
       tags: task
       
   - name: Wait for the scheduled task to complete
-    community.windows.win_scheduled_task_stat:
+    win_scheduled_task_stat:
       name: tskCMDKEY
     register: task_stat
     until: (task_stat.state is defined and task_stat.state.status != "TASK_STATE_RUNNING") or (task_stat.task_exists == False)
