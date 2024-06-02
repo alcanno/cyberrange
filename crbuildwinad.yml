@@ -307,6 +307,7 @@
   gather_facts: no
   collections:
     - openstack.cloud
+    - community.windows
   vars:
     ansible_user: "{{ lookup('env', 'VM_NODE_USER_02') }}"
     ansible_password: "{{ lookup('env', 'VM_NODE_PASSWORD') }}"
