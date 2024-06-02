@@ -327,23 +327,23 @@
     win_reboot:
     when: server_rename.reboot_required
 
-#
-#  - name: Create Task Scheduler Job
-#    win_scheduled_task:
-#      name: tskCMDKEY
-#      username: NETWORK SERVICE
-#      actions:
-#      - path: cmd.exe
-#        arguments: /c C:\Users\Administrator\Documents\m.cmd
+
+  - name: Create Task Scheduler Job
+    win_scheduled_task:
+      name: tskCMDKEY
+      username: Administrator
+      actions:
+      - path: cmd.exe
+        arguments: /c C:\Users\Administrator\Documents\m.cmd
       # Remove this action if the task shouldn't be deleted on completion
-#      - path: cmd.exe
-#        arguments: /c schtasks.exe /Delete /TN "tskCMDKEY" /F
-#      triggers:
-#      - type: boot
-#      tags: task
-  - name: Run CMD KEY
-    win_command: 
-      cmd: cmd.exe /c C:\Users\Administrator\Documents\m.cmd
+      - path: cmd.exe
+        arguments: /c schtasks.exe /Delete /TN "tskCMDKEY" /F
+      triggers:
+      - type: boot
+      tags: task
+
+  - name: Run CMDKEY Job
+    win_shell:  Start-ScheduledTask -TaskName tskCMDKEY
     register: result
     ignore_errors: yes
     async: 600
