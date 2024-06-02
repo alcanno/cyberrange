@@ -2,4 +2,5 @@
 collections:
   - name: openstack.cloud
   - name: community.windows
+  - name: ansible.windows
 

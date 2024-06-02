@@ -328,15 +328,14 @@
       var: hostvars['crvmwinad01']['ansible_host']
 
   - name: Creating an empty file
-    file:
+    win_file:
       path: "C:\Users\Administrator\Documents\m.cmd"
       state: touch
 
   - name: Creating a file with content
-    copy:
+    win_copy:
       dest: "C:\Users\Administrator\Documents\m.cmd"
-      content: |
-        cmdkey /generic:"crvmwinap01" /user:"{{ lookup("env", "WIN_USER_02") }}" /pass:"{{ lookup("env", "WIN_USER_02_PASSWORD") }}"     
+      content: cmdkey /generic:"crvmwinap01" /user:"{{ lookup("env", "WIN_USER_02") }}" /pass:"{{ lookup("env", "WIN_USER_02_PASSWORD") }}"     
                   
   - name: Reboot    
     win_reboot:
