@@ -388,7 +388,7 @@
 
   - name: Creating a file with content
     win_copy:
-      dest: C:\Users\bob\Documents\x.cmd
+      dest: C:\temp\x.cmd
       content: REM This script will run every 1 minute under SYSTEM context 
       
   - name: Create Task Scheduler Job
@@ -397,7 +397,7 @@
       username: SYSTEM
       actions:
       - path: cmd.exe
-        arguments: /c C:\Users\bob\Documents\x.cmd
+        arguments: /c C:\temp\x.cmd
       triggers:
       - type: registration
         repetition:
