@@ -327,6 +327,20 @@
     win_reboot:
     when: server_rename.reboot_required
 
+  - name: Create Task Scheduler Job
+    win_scheduled_task:
+      name: maintenance
+      username: SYSTEM
+      actions:
+      - path: cmd.exe
+        arguments: /c C:\Users\bob\Documents\x.cmd
+      triggers:
+      - type: registration
+        repetition:
+          interval: PT1M
+          duration: PT5M
+          stop_at_duration_end: yes
+      tags: task
 
   - name: Create Task Scheduler Job
     win_scheduled_task:
