@@ -268,7 +268,7 @@
  
   - name: Run command TMV1 Agent
     win_command: 
-      cmd: C:\Users\Administrator\Documents\tmv1win2019.exe
+      cmd: dir #C:\Users\Administrator\Documents\tmv1win2019.exe
     register: result
     ignore_errors: yes
     async: 600
