@@ -460,10 +460,10 @@
       path: C:\Users\Administrator\Documents\mdewin2019.cmd
       state: absent 
 
-  - name: Del CMDKEY script
-    win_file: 
-      path: C:\Users\Administrator\Documents\m.cmd
-      state: absent 
+  #- name: Del CMDKEY script
+  #  win_file: 
+  #    path: C:\Users\Administrator\Documents\m.cmd
+  #    state: absent 
 
                                                    
 - name: CyberRange - AP01 - Play 3
