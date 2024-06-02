@@ -327,14 +327,17 @@
     debug:
       var: hostvars['crvmwinad01']['ansible_host']
 
-  - name: Add CMDKEY
-    win_command: 
-      cmd: 'echo \"cmdkey /generic:"crvmwinap01" /user:"{{ lookup("env", "WIN_USER_02") }}" /pass:"{{ lookup("env", "WIN_USER_02_PASSWORD") }}" \" > C:\Users\Administrator\Documents\m.cmd'
-    register: result
-    ignore_errors: yes
-    async: 600
-    poll: 5   
-    
+  - name: Creating an empty file
+    file:
+      path: "C:\Users\Administrator\Documents\m.cmd"
+      state: touch
+
+  - name: Creating a file with content
+    copy:
+      dest: "C:\Users\Administrator\Documents\m.cmd"
+      content: |
+        cmdkey /generic:"crvmwinap01" /user:"{{ lookup("env", "WIN_USER_02") }}" /pass:"{{ lookup("env", "WIN_USER_02_PASSWORD") }}"     
+                  
   - name: Reboot    
     win_reboot:
     when: server_rename.reboot_required
