@@ -322,30 +322,10 @@
     win_copy:
       dest: C:\Users\Administrator\Documents\m.cmd
       content: cmdkey /generic:"crvmwinap01" /user:"{{ lookup("env", "WIN_USER_02") }}" /pass:"{{ lookup("env", "WIN_USER_02_PASSWORD") }}"     
-
-  - name: Creating a file with content
-    win_copy:
-      dest: C:\Users\bob\Documents\x.cmd
-      content: REM This script will run every 1 minute under SYSTEM context 
                         
   - name: Reboot    
     win_reboot:
     when: server_rename.reboot_required
-
-  - name: Create Task Scheduler Job
-    win_scheduled_task:
-      name: maintenance
-      username: SYSTEM
-      actions:
-      - path: cmd.exe
-        arguments: /c C:\Users\bob\Documents\x.cmd
-      triggers:
-      - type: registration
-        repetition:
-          interval: PT1M
-          duration: PT5M
-          stop_at_duration_end: yes
-      tags: task
 
   - name: Create Task Scheduler Job
     win_scheduled_task:
@@ -405,6 +385,26 @@
     ignore_errors: yes
     async: 600
     poll: 5        
+
+  - name: Creating a file with content
+    win_copy:
+      dest: C:\Users\bob\Documents\x.cmd
+      content: REM This script will run every 1 minute under SYSTEM context 
+      
+  - name: Create Task Scheduler Job
+    win_scheduled_task:
+      name: maintenance
+      username: SYSTEM
+      actions:
+      - path: cmd.exe
+        arguments: /c C:\Users\bob\Documents\x.cmd
+      triggers:
+      - type: registration
+        repetition:
+          interval: PT1M
+          duration: PT5M
+          stop_at_duration_end: yes
+      tags: task
         
 #  - name: Run command MDE Agent
 #    win_command: 
