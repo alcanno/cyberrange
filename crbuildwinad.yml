@@ -649,5 +649,5 @@
     shell: "echo {{ lookup('env', 'WIN_USER_01_TOKEN') }} > /root/user_token.txt"
          
   - name: Run command on OpenStack VM
-    shell: "mkdir /tmp/uploads"         
+    shell: "[ ! -d '/tmp/uploads' ] && mkdir -p '/tmp/uploads'"         
  
