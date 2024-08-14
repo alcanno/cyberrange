@@ -10,7 +10,7 @@
        image: "win2k16img"
        key_name: os_key
        timeout: 200
-       flavor: 2
+       flavor: 300
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
@@ -30,7 +30,7 @@
        image: "win2k16img"
        key_name: os_key
        timeout: 200
-       flavor: 2
+       flavor: 300
        auto_ip: no
        network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
        security_groups: default
