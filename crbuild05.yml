@@ -1,0 +1,66 @@
+---
+- name: CyberRange
+  hosts: localhost
+  
+  tasks:
+  - name: Create a new instance and attaches to a network and passes metadata to the instance
+    os_server:
+       state: present
+       name: crvmlin03
+       image: "ubuntu2204img"
+       key_name: os_key
+       timeout: 200
+       flavor: 300
+       auto_ip: no
+       network: 57325c59-2d2e-47f7-9d19-3d33771e2fee
+       security_groups: default
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"       
+       meta:
+         os: linux        
+    async: 600
+    poll: 5
+    register: vm_created
+           
+  - name: Create floating ip
+    os_floating_ip:
+       state: present
+       network: public
+       server: crvmlin03 
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"
+                  
+    register: floating_ip_info
+
+  - name: Set fact for floating IPs
+    set_fact:
+       floating_ips: "{{ floating_ip_info.floating_ip.floating_ip_address }}"
+
+  - name: Output floating ip
+    debug:
+       var: floating_ips
+
+  - name: Debug vm_created variable
+    debug:
+       var: vm_created
+
+  - name: Add VM to inventory
+    add_host:
+      name: "{{ vm_created.server.id }}"
+      ansible_host: "{{ floating_ip_info.floating_ip.floating_ip_address }}"
+      groups: cr_server_grp
+    when: vm_created is defined and vm_created.changed
+
+  - name: Debug inventory
+    debug:
+      var: hostvars
+    
+
