@@ -1,7 +1,7 @@
 --- 
 - name: CyberRange
   hosts: localhost  
-  
+ 
   tasks:  
   - name: Create VM Linux App 
     os_server:
