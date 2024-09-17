@@ -17,7 +17,7 @@
   - name: Delete instance
     os_server:
        state: absent
-       name: crvmwinap01
+       name: crvmwinap20
        auth:
          auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
          username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
@@ -28,7 +28,7 @@
   - name: Delete instance
     os_server:
        state: absent
-       name: crvmwindb01            
+       name: crvmwindb20            
        auth:
          auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
          username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
