@@ -344,10 +344,6 @@
     shell: "echo $(date && (shuf -i 1-1000 -n 1)) | md5sum | awk '{print substr($1,length($1)-20)}' > /home/kali/pass.txt && cat /home/kali/pass.txt | vncpasswd -f > /home/kali/.vnc/passwd && cat /home/kali/pass.txt"
     register: shellout
     
-  - name: Run command to cleanup
-    shell: "echo 'ls' > /home/kali/.zsh_history & exec $SHELL -l"
-    register: shellout2    
-
   - name: Output VMs floating IPs
     debug:
        var: hostvars[inventory_hostname]['ansible_host']
