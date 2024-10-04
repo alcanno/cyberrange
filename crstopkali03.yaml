@@ -5,8 +5,8 @@
   tasks:
   - name: Start Instance
     os_server_action:
-       action: start
-       name: crvmkaliusr06
+       action: stop
+       name: crvmkaliusr03
        timeout: 200
        auth:
          auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
