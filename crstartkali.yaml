@@ -4,7 +4,7 @@
   
   tasks:
   - name: Start Instance
-    os_action:
+    os_server_action:
        action: start
        name: crvmkaliusr06
        timeout: 200
