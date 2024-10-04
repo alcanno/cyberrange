@@ -5,7 +5,7 @@
   tasks:
   - name: Start Instance
     os_server_action:
-       action: stop
+       action: start
        name: crvmkaliusr06
        timeout: 200
        auth:
@@ -15,5 +15,52 @@
          project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
          domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"
 
+  - name: Start Instance
+    os_server_action:
+       action: start
+       name: crvmkaliusr05
+       timeout: 200
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"
+
+  - name: Start Instance
+    os_server_action:
+       action: start
+       name: crvmkaliusr04
+       timeout: 200
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"
+
+  - name: Start Instance
+    os_server_action:
+       action: start
+       name: crvmkaliusr03
+       timeout: 200
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"
+
+  - name: Start Instance
+    os_server_action:
+       action: start
+       name: crvmkaliusr02
+       timeout: 200
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"                           
 
 
