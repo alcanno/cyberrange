@@ -4,8 +4,8 @@
   
   tasks:
   - name: Start Instance
-    os_server:
-       state: present
+    server_action:
+       action: start
        name: crvmkaliusr06
        timeout: 200
        auth:
