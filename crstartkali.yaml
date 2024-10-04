@@ -5,7 +5,7 @@
   tasks:
   - name: Start Instance
     os_server:
-       state: present
+       state: running
        name: crvmkaliusr06
        image: "kali2024img"
        key_name: os_key
