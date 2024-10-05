@@ -1,0 +1,17 @@
+---
+- name: CyberRange
+  hosts: localhost
+  
+  tasks:
+  - name: Start Instance
+    os_server_action:
+       action: stop
+       name: crvmwindb01
+       timeout: 200
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"
+                        
