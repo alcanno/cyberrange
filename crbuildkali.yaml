@@ -6,7 +6,7 @@
   - name: Create a new instance and attaches to a network and passes metadata to the instance
     os_server:
        state: present
-       name: kalivm01
+       name: kalivm02
        image: "kali2024img"
        key_name: os_key
        timeout: 200
