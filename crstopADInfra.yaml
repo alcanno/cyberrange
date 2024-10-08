@@ -3,7 +3,7 @@
   hosts: localhost
   
   tasks:
-  - name: Start Instance
+  - name: Stop Instance
     os_server_action:
        action: stop
        name: crvmwinad01
@@ -22,7 +22,7 @@
     debug:
       var: vm_ad01_stopped
       
-  - name: Start Instance
+  - name: Stop Instance
     os_server_action:
        action: stop
        name: crvmwindb20
@@ -41,7 +41,7 @@
     debug:
       var: crvmwindb20_stopped
       
-  - name: Start Instance
+  - name: Stop Instance
     os_server_action:
        action: stop
        name: crvmwinap20
@@ -60,7 +60,7 @@
     debug:
       var: crvmwinap20_stopped
       
-  - name: Start Instance
+  - name: Stop Instance
     os_server_action:
        action: stop
        name: crvmlin02
