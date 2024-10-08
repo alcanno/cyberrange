@@ -6,7 +6,7 @@
   - name: Delete instance
     os_server:
        state: absent
-       name: kalivm01
+       name: kalivm02 
        auth:
          auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
          username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
