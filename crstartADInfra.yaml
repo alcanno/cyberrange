@@ -16,7 +16,7 @@
          domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"
     async: 600
     poll: 5
-    register: vm_ad01_created
+    register: vm_ad01_started
 
   - name: Debug inventory - vm_ad01_started
     debug:
@@ -35,7 +35,7 @@
          domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"
     async: 600
     poll: 5
-    register: crvmwindb20_created
+    register: crvmwindb20_started
 
   - name: Debug inventory - crvmwindb20_started
     debug:
