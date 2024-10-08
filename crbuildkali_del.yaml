@@ -13,4 +13,4 @@
          password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
          project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
          domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"        
-              
+         
