@@ -1,0 +1,82 @@
+---
+- name: CyberRange
+  hosts: localhost
+  
+  tasks:
+  - name: Start Instance
+    os_server_action:
+       action: start
+       name: crvmwinad01
+       timeout: 200
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"
+    async: 600
+    poll: 5
+    register: vm_ad01_created
+
+  - name: Debug inventory - vm_ad01_started
+    debug:
+      var: vm_ad01_started
+      
+  - name: Start Instance
+    os_server_action:
+       action: start
+       name: crvmwindb20
+       timeout: 200
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"
+    async: 600
+    poll: 5
+    register: crvmwindb20_created
+
+  - name: Debug inventory - crvmwindb20_started
+    debug:
+      var: crvmwindb20_started
+      
+  - name: Start Instance
+    os_server_action:
+       action: start
+       name: crvmwinap20
+       timeout: 200
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"
+    async: 600
+    poll: 5
+    register: crvmwinap20_started
+
+  - name: Debug inventory - crvmwinap20_started
+    debug:
+      var: crvmwinap20_started
+      
+  - name: Start Instance
+    os_server_action:
+       action: start
+       name: crvmlin02
+       timeout: 200
+       auth:
+         auth_url: "{{ lookup('env', 'OPENSTACK_AUTH_URL') }}"
+         username: "{{ lookup('env', 'OPENSTACK_USERNAME') }}"
+         password: "{{ lookup('env', 'OPENSTACK_PASSWORD') }}"
+         project_name: "{{ lookup('env', 'OPENSTACK_PROJECT') }}"
+         domain_name: "{{ lookup('env', 'OPENSTACK_DOMAIN') }}"
+    async: 600
+    poll: 5
+    register: crvmlin02_started
+
+  - name: Debug inventory - crvmlin02_started
+    debug:
+      var: crvmlin02_started      
+      
+                                    
