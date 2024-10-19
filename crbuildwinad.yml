@@ -240,7 +240,7 @@
   tasks:
   - name: link NTP server to NZ
     win_command: 
-      cmd: w32tm /config /manualpeerlist:"nz.pool.ntp.org,0x8" /syncfromflags:manual /reliable:YES /update
+      cmd: w32tm /config /manualpeerlist:"ph.pool.ntp.org,0x8" /syncfromflags:manual /reliable:YES /update
     register: result
     ignore_errors: yes
     async: 600
@@ -356,7 +356,7 @@
 
   - name: link NTP server to NZ
     win_command: 
-      cmd: w32tm /config /manualpeerlist:"nz.pool.ntp.org,0x8" /syncfromflags:manual /reliable:YES /update
+      cmd: w32tm /config /manualpeerlist:"ph.pool.ntp.org,0x8" /syncfromflags:manual /reliable:YES /update
     register: result
     ignore_errors: yes
     async: 600
@@ -520,7 +520,7 @@
 
   - name: link NTP server to NZ
     win_command: 
-      cmd: w32tm /config /manualpeerlist:"nz.pool.ntp.org,0x8" /syncfromflags:manual /reliable:YES /update
+      cmd: w32tm /config /manualpeerlist:"ph.pool.ntp.org,0x8" /syncfromflags:manual /reliable:YES /update
     register: result
     ignore_errors: yes
     async: 600
